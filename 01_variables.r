@@ -7,3 +7,5 @@ var2 <- 4L
 var3 <- var1 + var2
 var4 <- sqrt(var2)
 message <- paste("Hello", "World")
+
+result <- 4 < 5
