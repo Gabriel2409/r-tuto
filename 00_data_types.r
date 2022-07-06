@@ -1,9 +1,9 @@
 # integer
-x <- 2L
+x - 2L
 typeof(x)
 
 # double
-y <-3
+y <- 3
 typeof(y)
 
 # complex
@@ -18,8 +18,8 @@ b <- "ab"
 typeof(b)
 
 # logical
-q1 <- T
+q1 <- TRUE
 typeof(q1)
 
-q2 <- F
+q2 <- FALSE
 typeof(q1)
