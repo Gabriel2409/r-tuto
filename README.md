@@ -9,3 +9,9 @@
 - logical: `q1 <- T`
 
 Check type : `typeof(x)`
+
+## Variables:
+
+- remove a variable from the R env with `remove(<var_name>)`
+- addition: `c <- a + b`
+- concat strings: `message <- paste("Hello", "World")`
