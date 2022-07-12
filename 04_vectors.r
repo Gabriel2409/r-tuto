@@ -13,3 +13,8 @@ vect[c(-1, 3)] # error
 
 v1 <- c(2, 8)
 v2 <- c(4, 9)
+
+my_vect <- c(1, 2)
+names(my_vect) <- c("a", "b")
+
+names(my_vect) <- NULL
