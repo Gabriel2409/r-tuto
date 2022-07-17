@@ -177,3 +177,31 @@ mat3 <- matrix(1:10, nrow = 5, ncol = 2)
 mat2 / mat1
 mat3 / mat2 # error: non conformable arrays
 ```
+
+## functions
+
+```R
+a <- function(){
+    mydata <- c(1,2)
+    # return value is last exp to be evaluated
+    mydata
+}
+a()
+
+b <- function(alpha=1){
+  alpha
+}
+b(4)
+```
+
+## Plots
+
+### matplot
+
+- plots in columns
+- legends must be added manually
+
+```R
+matplot(t(FieldGoals), type="b", pch=15:18, col=c(1:4,6))
+legend("bottomleft", inset=0.01, legend=Players, col=c(1:4,6), pch=15:18, horiz=FALSE)
+```
