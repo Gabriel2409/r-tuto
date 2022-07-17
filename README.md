@@ -81,11 +81,10 @@ a <- rep(c(1,2),5) # repeats 1,2 5 times
 
 - helper functions: `is.numeric`, `is.double`, `is.character`, ...
 
-````
-
 - Access elements with []
 - Because everything is a vector:
 - Note: R is mainly used for vectorized operations so most of the time, no need to access individual elements
+
 ```R
 a <- 1 # a[1] == 1 | a[1][1] == 1
 
@@ -99,7 +98,7 @@ vect[-2] # "a", "c", "d" | everything except second element
 vect[c(1,3)] # "a", "c"
 vect[c(-1,-3)] # "b", "d"
 # note: can not mix negative and positive subscripts
-````
+```
 
 - Vectorized operations
 
@@ -194,9 +193,7 @@ b <- function(alpha=1){
 b(4)
 ```
 
-## Plots
-
-### matplot
+### Ex: matplot
 
 - plots in columns
 - legends must be added manually
@@ -205,3 +202,94 @@ b(4)
 matplot(t(FieldGoals), type="b", pch=15:18, col=c(1:4,6))
 legend("bottomleft", inset=0.01, legend=Players, col=c(1:4,6), pch=15:18, horiz=FALSE)
 ```
+
+## dataframes
+
+- similar to matrices but each column can be of a different type
+
+### import data
+
+- show working dir with `getwd()`
+- `df <- read.csv(file.choose())` or
+
+```R
+setwd("path/to/dir") # sets working dir
+df <- read.csv("file.csv")
+is.data.frame(df) #TRUE
+```
+
+### create df from vectors
+
+```R
+v1 <- c(1,"a")
+v2 <- c(2, "b")
+
+df <- data.frame(v1,v2)
+colnames(df) <- c("name1","name2")
+
+df_alt <- data.frame(name1=v1, name2=v2)
+```
+
+### explore dataframe
+
+- nb of rows: `nrow(df)`
+- nb of cols: `ncol(df)`
+- First rows: `head(df, n=10) # default is 5`
+- last rows: `tail(df, n=10)`
+- structure of the df: `str(df)`
+- more complete summary: `summary(df)`
+
+NOTE: categorical variables are represented as factors. Each value is stored ad an integer and the factor contains the mapping between the integer ans the corresponding level
+
+### dataframe access and assignment
+
+- everything that we can use on a matrix work with df: `df[1,2]`, `df[1:4,]`, ...
+- is we access a unique row, we still have a df, not a vector: `df[3,]` returns a dataframe
+- however, if we access a column, we get a vector by default: `df[,4]` returns a vector. `df[,4,drop=FALSE]` returns a df with one column
+- `$` is used as syntactic sugar: `df$colname` is equivalent to `df[,"colname"]`
+- assign a col: `df$c1 <- df$a + df$b` : when adding vectors, R performs recycling if vector is too small. Which means we can easily add a constant to all the values: `df$colname +1`
+- remove a col: `df$col <- NULL`
+- `df$col >1` returns a vector full of boolean values. This vector can then be used to index the df. Which means, we can filter the df: `df[df$col>1,]`
+
+### merge dataframes
+
+```R
+merged <- data.frame(df1, df2, by.x="col1", by.y="col2")
+```
+
+## ggplot2
+
+Grammar of graphics is a package to make very advanced plots
+
+### qplot
+
+Qplot (quickplot) allows to make fast plots. Qplot will determine which graph is the most suitable based on the provided data.
+Ex:
+
+```R
+qplot(
+    data=merged,
+    x=Internet.users,
+    y=Birth.rate,
+    color=Region,
+    size=I(4),
+    shape=I(13),
+    alpha=I(0.8)
+)
+
+```
+
+### ggplot2
+
+Main function of the package.
+Ggplot2 superposes 7 layers that are necessary to render a plot
+
+- Data: the data we want to plot
+- Aesthetics: how the data us mapped to the chart (axis, color...)
+- Geometries: what form the aesthetics take (line, dot, ...)
+- Statistics: transform data to create new data to visualize
+- Facets: multiple form of the same chart based on categories
+- Coordinates: x,y, polar, zoom level, etc...
+- Themes: make the chart pretty
+
+To build a chart, you need at least the first three layers. With ggplot, you define the data and the default aesthetics. Then you add the geometry to get the plot (note that the geometry can overwrite the default aesthetics).
