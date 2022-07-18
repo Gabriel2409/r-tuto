@@ -1,4 +1,4 @@
-getwd()
+ngetwd()
 
 movies <- read.csv("P2-Movie-Ratings.csv", stringsAsFactors = TRUE)
 head(movies)
