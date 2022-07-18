@@ -46,3 +46,10 @@ q3 + geom_point(mapping = aes(color = Genre))
 
 ## add color: setting
 q3 + geom_point(color = "blue")
+
+## histograms
+q4 <- ggplot(data = movies, mapping = aes(x = BudgetMillions))
+q4 + geom_histogram(binwidth = 10, color = "black", mapping = aes(fill = Genre))
+
+## density chart
+q4 + geom_density(aes(fill = Genre), position = "stack")

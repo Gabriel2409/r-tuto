@@ -332,3 +332,28 @@ q3 + geom_point(mapping = aes(color = Genre))
 ## add color: setting. No use of aes keyword
 q3 + geom_point(color = "blue")
 ```
+
+- Histograms and density charts
+
+```R
+## histograms
+q4 <- ggplot(data = movies, mapping = aes(x = BudgetMillions))
+q4 + geom_histogram(binwidth = 10, color = "black", mapping = aes(fill = Genre))
+
+## density chart
+q4 + geom_density(aes(fill = Genre), position = "stack")
+```
+
+- statistical layer
+
+```R
+### smoothing
+q5 <- ggplot(data=movies, aes(x=CriticRating, y=AudienceRating, color=Genre))
+q5 + geom_point() + geom_smooth(fill=NA)
+
+### boxplots
+q6 <- ggplot(data=movies, aes(x=Genre, y=AudienceRating, color=Genre))
+q6 + geom_boxplot(size=1.2) + geom_jitter(alpha=0.2)
+```
+
+- facets
