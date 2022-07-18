@@ -357,3 +357,21 @@ q6 + geom_boxplot(size=1.2) + geom_jitter(alpha=0.2)
 ```
 
 - facets
+
+```R
+q7 <- ggplot(data = movies, aes(x = BudgetMillions))
+# one chart with everything, not easy to read
+q7 + geom_histogram(binwidth = 10, aes(fill = Genre), color = "Black")
+
+# one graph per Genre
+q7 + geom_histogram(binwidth = 10, aes(fill = Genre), color = "Black") +
+  facet_grid(Genre ~ .)
+
+# one graph per Genre and Year
+q7 + geom_histogram(binwidth = 10, aes(fill = Genre), color = "Black") +
+  facet_grid(Genre ~ Year)
+
+# scatter plot per year
+q8 <- ggplot(data=movies, aes(x=CriticRating, y=AudienceRating, color=Genre))
+q8 + geom_point(size=3) + facet_grid(.~Year)
+```
