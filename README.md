@@ -411,3 +411,44 @@ full_hist +
     plot.title = element_text(color = "DarkBlue", size = 40, family = "Courier")
   )
 ```
+
+# Shiny
+
+## Basic structure
+
+In myfolder/app.r:
+
+```R
+library(shiny)
+
+# Define UI
+ui <- ...
+
+# Define server
+server <- function(input, output) {}
+
+shinyApp(ui = ui, server = server)
+```
+
+- To run the app, in parent folder: `runApp("myfolder")`
+
+## User interface
+
+### Basic sidebar layout
+
+```R
+ui <- fluidPage(
+  titlePanel("My Shiny App"),
+  sidebarLayout(
+    sidebarPanel(
+      h2("Installation"),
+      p("Shiny is a product of", a("RStudio", href = "https://www.rstudio.com/"))
+      img(src = "rstudio.png", width = 200, height = 70), # image should be in www folder
+    ),
+    mainPanel(
+      h1("Introducing Shiny"),
+      p("Shiny is a package...."),
+    )
+  )
+)
+```
