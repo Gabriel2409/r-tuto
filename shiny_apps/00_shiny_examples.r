@@ -20,3 +20,5 @@ runExample("09_upload")
 runExample("10_download")
 
 runExample("11_timer")
+
+runApp("01_user_interface")
