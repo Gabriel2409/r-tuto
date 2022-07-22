@@ -26,3 +26,5 @@ runApp("01_user_interface")
 runApp("02_widgets")
 
 runApp("03_reactive")
+
+runApp("04_r_scripts_and_data")

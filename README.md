@@ -193,6 +193,16 @@ b <- function(alpha=1){
 b(4)
 ```
 
+- call with list of args
+
+```R
+b <- function(alpha = 1, beta = 2, gamma = 3) {
+  c(alpha, beta, gamma)
+}
+args <- list(5, 6, 7)
+do.call(b, args)
+```
+
 ### Ex: matplot
 
 - plots in columns
@@ -494,7 +504,8 @@ ui <- fluidPage(
 # in ui
 ui <- ...
       selectInput("var",...),
-      sliderInput("range", ...)
+
+sliderInput("range", ...)
       ...
       textOutput("selected_var"),
       textOutput("selected_range")
@@ -514,3 +525,7 @@ server <- function(input, output) {
 }
 
 ```
+
+## import files
+
+- import all functions in a file: `source("helpers.R")`
