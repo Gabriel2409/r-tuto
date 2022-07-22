@@ -482,9 +482,35 @@ ui <- fluidPage(
   ),
   fluidRow(column(12, textInput("txtIn", "Enter text", value = "", placeholder = "Here")))
 )
+```
+
+## Reactive output
+
+- the ui must contain inputs and outputs with ids
+- the server has access to all the inputs and modifies the output vars. These outputs
+  are then rendered with a `render*` function
+
+```R
+# in ui
+ui <- ...
+      selectInput("var",...),
+      sliderInput("range", ...)
+      ...
+      textOutput("selected_var"),
+      textOutput("selected_range")
+      ...
 
 
-
-
+server <- function(input, output) {
+  output$selected_var <- renderText({
+    paste("You have selected ", input$var)
+  })
+  output$selected_range <- renderText({
+    paste(
+      "You have chosen a range that goes from",
+      input$range[1], "to", input$range[2]
+    )
+  })
+}
 
 ```
